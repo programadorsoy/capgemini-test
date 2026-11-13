@@ -1,5 +1,27 @@
 # Capgemini-Test
 
+## Cambios realizado desde el original
+Se ha realizado la prueba de openbank en:
+ 
+https://github.com/capCCA/capgemini-test/
+
+Se ha montado el proyecto en STS en un equipo local.
+
+Cambios realizado en el software original:
+
+pom.xml
+	Se incluye la dependencia:
+	<dependency>
+	      <groupId>io.github.openfeign</groupId>
+	      <artifactId>feign-okhttp</artifactId>
+    	</dependency>  
+
+V1_init.sql
+	Se cambian los valores de INSERT INTO, añadiendo campos obligatorios y se añaden valores para esos campos.
+
+docker-compose.yml
+	Se cambia la configuración para poderlo arrancar con la version de docker Docker version 29.9.3, build 5457199.
+
 ## Prerrequisitos
 
 Asegúrese de tener instalados los siguientes componentes antes de ejecutar el proyecto:
