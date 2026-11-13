@@ -1,83 +1,100 @@
 [
-  {
-    "httpRequest": {
-      "method": "POST",
-      "path": "/sms"
-    },
-    "httpResponse": {
-      "statusCode": 200,
-      "headers": {
-        "Content-Type": [
-          "application/json"
-        ]
-      },
-      "body": "{\"message\": \"valid sms\"}"
-    },
-    "times": {
-      "unlimited": true
-    }
-  },
-  {
-    "httpRequest": {
-      "method": "POST",
-      "path": "/email"
-    },
-    "httpResponse": {
-      "statusCode": 200,
-      "headers": {
-        "Content-Type": [
-          "application/json"
-        ]
-      },
-      "body": "{\"message\": \"valid email\"}"
-    },
-    "times": {
-      "unlimited": true
-    }
-  },
-  {
-    "httpRequest": {
-      "method": "PATCH",
-      "path": "/check-dni",
-      "body": {
-        "type": "JSON",
-        "json": {
-          "dni": "99999999w"
-        }
-      }
-    },
-    "httpResponse": {
-      "statusCode": 409,
-      "headers": {
-        "Content-Type": [
-          "application/json"
-        ]
-      },
-      "body": "{\"message\": \"Invalid DNI\"}"
-    },
-    "times": {
-      "unlimited": true
-    }
-  },
-  {
-    "httpRequest": {
-      "method": "PATCH",
-      "path": "/check-dni",
-      "body": {
-        "type": "JSON"
-      }
-    },
-    "httpResponse": {
-      "statusCode": 200,
-      "headers": {
-        "Content-Type": [
-          "application/json"
-        ]
-      },
-      "body": "{\"message\": \"Valid DNI\"}"
-    },
-    "times": {
-      "unlimited": true
-    }
-  }
+	{
+	  "httpRequest": {
+	    "method": "POST",
+	    "path": "/sms"
+	  },
+	  "httpResponse": {
+	    "statusCode": 200,
+	    "headers": {
+	      "Content-Type": [
+	        "application/json"
+	      ]
+	    },
+	    "body": "{\"message\": \"valid sms\"}"
+	  },
+	  "times": {
+	    "unlimited": true
+	  }
+	},
+	{
+	  "httpRequest": {
+	    "method": "POST",
+	    "path": "/email",
+	    "body": {
+	      "type": "JSON_PATH",
+	      "jsonPath": "$[?(@.email == '')]"
+	    }
+	  },
+	  "httpResponse": {
+	    "statusCode": 409,
+	    "headers": { "Content-Type": [ "application/json" ] },
+	    "body": "{\"message\": \"Invalid email or message\"}"
+	  },
+	  "priority": 30,
+	  "times": { "unlimited": true }
+	},
+	{
+	  "httpRequest": {
+	    "method": "POST",
+	    "path": "/email",
+	    "body": {
+	      "type": "JSON_PATH",
+	      "jsonPath": "$[?(@.message == '')]"
+	    }
+	  },
+	  "httpResponse": {
+	    "statusCode": 409,
+	    "headers": { "Content-Type": [ "application/json" ] },
+	    "body": "{\"message\": \"Invalid email or message\"}"
+	  },
+	  "priority": 20,
+	  "times": { "unlimited": true }
+	},
+	{
+	  "httpRequest": {
+	    "method": "POST",
+	    "path": "/email"
+	  },
+	  "httpResponse": {
+	    "statusCode": 200,
+	    "headers": { "Content-Type": [ "application/json" ] },
+	    "body": "{\"message\": \"valid email\"}"
+	  },
+	  "priority": 1,
+	  "times": { "unlimited": true }
+	},
+	  {
+	    "httpRequest": {
+	      "method": "PATCH",
+	      "path": "/check-dni",
+	      "body": {
+	        "type": "JSON_PATH",
+	        "jsonPath": "$[?(@.dni == '99999999w')]"
+	      }
+	    },
+	    "httpResponse": {
+	      "statusCode": 409,
+	      "headers": { "Content-Type": [ "application/json" ] },
+	      "body": "{\"message\": \"Invalid DNI\"}"
+	    },
+	    "priority": 10,
+	    "times": { "unlimited": true }
+	  },
+	  {
+	    "httpRequest": {
+	      "method": "PATCH",
+	      "path": "/check-dni",
+	      "body": {
+	        "type": "JSON"
+	      }
+	    },
+	    "httpResponse": {
+	      "statusCode": 200,
+	      "headers": { "Content-Type": [ "application/json" ] },
+	      "body": "{\"message\": \"Valid DNI\"}"
+	    },
+	    "priority": 1,
+	    "times": { "unlimited": true }
+	  }
 ]

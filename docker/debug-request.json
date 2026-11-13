@@ -1,0 +1,13 @@
+{
+  "method": "PATCH",
+  "path": "/check-dni",
+  "headers": {
+    "Content-Type": ["application/json"]
+  },
+  "body": {
+    "type": "JSON",
+    "json": {
+      "dni": "99999999w"
+    }
+  }
+}

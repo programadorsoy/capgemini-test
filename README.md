@@ -21,6 +21,58 @@ V1_init.sql
 
 docker-compose.yml
 	Se cambia la configuración para poderlo arrancar con la version de docker Docker version 29.9.3, build 5457199.
+	
+Para ejecutar la BBDD, la prueba la he realizado instalando docker desktop y ejecutando en powershell docker compose up -d
+
+Para realizar las diferentes pruebas, se puede realizar por postman o por curl:
+
+## Pruebas
+## API check-dni
+
+1.- Prueba de dni valido:
+PS curl.exe -4 -i -X PATCH "http://127.0.0.1:1080/check-dni" `
+>>   -H "Content-Type: application/json" `
+>>   -d '{ "dni": "12345678Z" }'
+HTTP/1.1 200 OK
+Content-Type: application/json
+connection: keep-alive
+content-length: 24
+
+{"message": "Valid DNI"}
+
+2.- Prueba de dni invalido:
+PS curl.exe -4 -i -X PATCH "http://127.0.0.1:1080/check-dni" -H "Content-Type: application/json" --data-raw '{"dni":"99999999w"}'
+HTTP/1.1 409 Conflict
+Content-Type: application/json
+connection: keep-alive
+content-length: 26
+
+{"message": "Invalid DNI"}
+
+
+## API notification
+1.- Prueba de email y mensaje valido:
+PS C:\Users\rambosoy\git\capgemini-test\docker> curl.exe -4 -i -X POST "http://127.0.0.1:1080/email" -H "Content-Type: application/json" --data-raw '{"email":"test@example.com","message":"hola"}'
+HTTP/1.1 200 OK
+Content-Type: application/json
+connection: keep-alive
+content-length: 26
+
+{"message": "valid email"}
+
+2.- Prueba de sms:
+PS C:\Users\rambosoy\git\capgemini-test\docker> curl.exe -4 -i -X POST "http://127.0.0.1:1080/sms" -H "Content-Type: application/json" --data-raw '{"phone":"951234567","message":"prueba"}'
+HTTP/1.1 200 OK
+Content-Type: application/json
+connection: keep-alive
+content-length: 24
+
+{"message": "valid sms"}
+
+## 
+
+## 
+
 
 ## Prerrequisitos
 
