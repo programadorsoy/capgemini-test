@@ -27,6 +27,10 @@ Para ejecutar la BBDD, la prueba la he realizado instalando docker desktop y eje
 Para realizar las diferentes pruebas, se puede realizar por postman o por curl:
 
 ## Pruebas
+
+Se han realizado las pruebas con postman 12.37.0, se adjunta en el proyecto la colección creada a partir de la colección dada.
+Para ponerlo en el readme, tambien se ha probado a través de curl.
+
 ## API check-dni
 
 1.- Prueba de dni valido:
@@ -70,6 +74,20 @@ content-length: 24
 {"message": "valid sms"}
 
 ## 
+#	Test generado según requisitos.
+1	(Unitario)    test -Dtest=DniValidatorTest	Validación de formato DNI	Nada (puro).
+
+2	(Unitario)    test -Dtest=RoleValidatorTest	Validación de rol	Nada (puro).
+
+3	(Unitario)    test -Dtest=UserServiceTest	Lógica de negocio con Mockito	Nada (mocks).
+
+4	(Unitario)    test -Dtest=DniValidationAdapterTest	Adaptador Feign con Mockito	Nada (mocks).
+
+5	(Integración) test -Dtest=UserRepositoryAdapterTestIT	Adapter JPA + H2	H2, entidades.
+
+6	(Integración) test -Dtest=UserControllerIT	Controlador + MockMvc	Todo el contexto.
+
+7	(Aceptación)  test -Dtest=CreateUserAcceptanceTest	E2E + MockServer real	Docker (MockServer)
 
 ## 
 

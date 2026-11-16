@@ -1,6 +1,7 @@
 package com.capgemini.test.code.exception;
 
-//Excepción de email duplicado
-public class DuplicateEmailException {
-
+public class DuplicateEmailException extends RuntimeException {
+    public DuplicateEmailException(String email) {
+        super("Email already exists: " + email);
+    }
 }

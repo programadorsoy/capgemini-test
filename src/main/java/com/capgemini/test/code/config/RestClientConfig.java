@@ -1,6 +1,11 @@
 package com.capgemini.test.code.config;
 
-// Configuracion para Rest de clientes.
-public class RestClientConfig {
+import org.springframework.context.annotation.Configuration;
 
+/**
+ * Feign se autoconfigura vía @EnableFeignClients en CodeApplication.
+ * Esta clase se deja por si en el futuro se añaden RestClient/WebClient.
+ */
+@Configuration
+public class RestClientConfig {
 }

@@ -1,6 +1,8 @@
 package com.capgemini.test.code.domain.service;
 
-//Servicio de notificaciones
-public class NotificationPort {
+import com.capgemini.test.code.domain.model.User;
 
+public interface NotificationPort {
+    void notifyUserCreated(User user);
+    void notifyUserDeleted(User user);
 }

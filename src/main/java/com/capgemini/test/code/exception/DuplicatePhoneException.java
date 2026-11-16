@@ -1,6 +1,7 @@
 package com.capgemini.test.code.exception;
 
-//Excepción de telefono duplicado
-public class DuplicatePhoneException {
-
+public class DuplicatePhoneException extends RuntimeException {
+    public DuplicatePhoneException(String phone) {
+        super("Phone already exists: " + phone);
+    }
 }

@@ -1,3 +1,8 @@
+# Configuración principal (entorno real / docker-compose).
+# - Postgres del compose: localhost:5432, user/password, db "users".
+# - Flyway aplica V1_init.sql (intocable) al arrancar.
+# - ddl-auto=validate: Hibernate NO crea tablas, solo valida que entidades y esquema coinciden.
+# - external.service.url apunta a MockServer real (contenedor en 127.0.0.1:1080).
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/users
@@ -6,15 +11,19 @@ spring:
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: none
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
-    show-sql: true
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
   flyway:
     enabled: true
-    baseline-on-migrate: true
     locations: classpath:db/migration
-
+    baseline-on-migrate: true
 
 external:
   service:
-    url: http://localhost:1080
+    url: http://127.0.0.1:1080
+
+server:
+  port: 8080

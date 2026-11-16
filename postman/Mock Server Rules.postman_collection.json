@@ -1,0 +1,204 @@
+{
+  "info": {
+    "_postman_id": "61fe2bcc-ecc3-476c-8823-0debf0878471",
+    "name": "Mock Server Rules",
+    "description": "Colección generada a partir de las reglas de MockServer (SMS, Email, Check-DNI)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "59022470",
+    "_collection_link": "https://go.postman.co/collection/59022470-61fe2bcc-ecc3-476c-8823-0debf0878471?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "POST /sms - Valid SMS",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"phone\": \"+34600000000\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/sms",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "sms"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST /email - Invalid (empty email)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\": \"\", \"message\": \"Hola\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/email",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "email"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST /email - Invalid (empty message)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\": \"test@test.com\", \"message\": \"\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/email",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "email"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST /email - Valid email",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\": \"test@test.com\", \"message\": \"Hola mundo\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/email",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "email"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "PATCH /check-dni - Invalid DNI (99999999w)",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"dni\": \"99999999w\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/check-dni",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "check-dni"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "PATCH /check-dni - Valid DNI",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"dni\": \"12345678A\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/check-dni",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "check-dni"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://127.0.0.1:1080"
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 package com.capgemini.test.code.exception;
 
-//Excepción de dni invalido
-public class InvalidDniException {
-
+public class InvalidDniException extends RuntimeException {
+    public InvalidDniException(String dni) {
+        super("Invalid DNI: " + dni);
+    }
 }

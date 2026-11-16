@@ -1,0 +1,22 @@
+# Configuración para tests.
+# - H2 en memoria (no depende de Postgres del compose).
+# - Flyway OFF: Hibernate crea el esquema desde las entidades (create-drop).
+#   Así V1_init.sql (Postgres) no tiene que ser compatible con H2.
+# - external.service.url apunta al MockServer real del docker (1080).
+#   Los tests de aceptación validan la integración HTTP real con MockServer.
+spring:
+  datasource:
+    url: jdbc:h2:mem:roommanager;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+  flyway:
+    enabled: false
+
+external:
+  service:
+    url: http://127.0.0.1:1080
